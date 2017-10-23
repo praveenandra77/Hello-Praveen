@@ -1,0 +1,252 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!-- The contents of this file will be loaded for each web application -->
+<Context>
+
+    <!-- Default set of monitored resources -->
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+
+    <!-- Uncomment this to disable session persistence across Tomcat restarts -->
+    <!--
+    <Manager pathname="" />
+    -->
+
+    <!-- Uncomment this to enable Comet connection tacking (provides events
+         on session expiration as well as webapp lifecycle) -->
+    <!--
+    <Valve className="org.apache.catalina.valves.CometConnectionManagerValve" />
+    -->
+	
+	<ResourceLink
+		name="jdbc/croamisUserDs"
+		global="jdbc/UserConnectionResource"
+		type="javax.sql.DataSource"/>
+
+	<ResourceLink
+		name="jdbc/jobSchedulerDS"
+		global="jdbc/JobConnectionResource"
+		type="javax.sql.DataSource"/>
+	
+	<ResourceLink
+		name="jdbc/userDs"
+		global="jdbc/UserConnectionResource"
+		type="javax.sql.DataSource"/>
+
+	<ResourceLink
+		name="jdbc/croamisFrameworkDs"
+		global="jdbc/SysConnectionResource"
+		type="javax.sql.DataSource"/>	
+
+	<ResourceLink
+		name="jdbc/sysDs"
+		global="jdbc/SysConnectionResource"
+		type="javax.sql.DataSource"/>
+	
+	<ResourceLink
+		name="jdbc/sysownr_dataSource"
+		global="jdbc/SysConnectionResource"
+		type="javax.sql.DataSource"/>
+		
+	<ResourceLink
+		name="jdbc/masterDatabase"
+		global="jdbc/MasterConnectionResource"
+		type="javax.sql.DataSource"/>
+			
+	<ResourceLink
+		name="jdbc/flightDatabase"
+		global="jdbc/FlightConnectionResource"
+		type="javax.sql.DataSource"/>
+		
+	<ResourceLink
+		name="jdbc/flightfollowDatabase"
+		global="jdbc/FlightFollowConnectionResource"
+		type="javax.sql.DataSource"/>
+
+	<ResourceLink
+		name="jdbc/engineeringDatabase"
+		global="jdbc/EngineeringConnectionResource"
+		type="javax.sql.DataSource"/>
+
+	<ResourceLink
+		name="jdbc/notamDatabase"
+		global="jdbc/NotamConnectionResource"
+		type="javax.sql.DataSource"/>
+
+	<ResourceLink
+		name="jdbc/InterfaceUserDs"
+        	global="jdbc/IntfDS"
+	    	type="javax.sql.DataSource"/> 
+ 
+	<ResourceLink
+		name="jdbc/EIXDataSource"
+		global="jdbc/EixDS"
+		type="javax.sql.DataSource"/>
+		
+	<ResourceLink
+		name="jdbc/crewLeaveDatabaseExtended"
+		global="jdbc/CrewLeaveConnectionResourceExtended"
+		type="javax.sql.DataSource"/>	
+	
+	<ResourceLink
+		name="jdbc/crewLeaveDatabase"
+		global="jdbc/CrewLeaveConnectionResource"
+		type="javax.sql.DataSource"/>
+	<ResourceLink
+		 name="jdbc/crewDatabase"
+		 global="jdbc/CrewConnectionResource"
+		 type="javax.sql.DataSource"/>
+
+	<ResourceLink
+                name="jdbc/workspaceMasterDatabase"
+                global="jdbc/WorkspaceMasterConnectionResource"
+                type="javax.sql.DataSource"/>
+
+	<ResourceLink 
+                name="jdbc/reportsDatabase" 
+                global="jdbc/ReportConnectionResource" 
+                type="javax.sql.DataSource"/>	
+
+
+				
+<!-- JMS Connection factories & Queues-->	
+	
+	<!-- CLV Connection factories -->	
+	<ResourceLink name="jms/DBViewInConnectionFactory" 		global="jms/topsConnectionFactory"/>
+	<ResourceLink name="jms/MSTDBViewInConnectionFactory" 		global="jms/topsConnectionFactory"/>
+	<ResourceLink name="jms/topsConnectionFactory"          	global="jms/topsConnectionFactory"/>	
+	
+	<ResourceLink name="jms/flfOutConnectionFactory" 		global="jms/topsConnectionFactory"/>
+	<ResourceLink name="jms/queue/flfOutQ" 					global="jms/queue/flfOutQ"/>
+	
+	<ResourceLink name="jms/eixConnectionFactory"    		global="jms/topsConnectionFactory"/>
+	<!--CLV Queues-->
+	<ResourceLink name="jms/queue/MSTDBViewClvInQ" 			global="jms/queue/CLV_IN"/>
+	<ResourceLink name="jms/queue/DBViewClvInQ" 			global="jms/queue/CLV_IN"/>
+	<ResourceLink name="jms/queue/BidResMemQ"     			global="jms/queue/BidResMemQ"/>	
+
+	<ResourceLink  name="jms/topsRulesQueueConnectionFactory" 	global="jms/evtConnectionFactory" /> 
+	<ResourceLink  name="jms/queue/topsRulesQ"  			global="jms/queue/topsRulesQ" /> 
+
+	<ResourceLink  name="jms/fltAllInConnectionFactory"  		global="jms/topsConnectionFactory" />
+	<ResourceLink  name="jms/queue/fltAllInQ"  			global="jms/queue/fltAllInQ" />
+
+        <ResourceLink name="jms/fltSsmInConnectionFactory"              global="jms/topsConnectionFactory"/>
+        <ResourceLink name="jms/queue/fltSsmInQ"                        global="jms/queue/fltSsmInQ" />
+
+	<ResourceLink  name="jms/fltSsimInConnectionFactory"  		global="jms/topsConnectionFactory" />
+	<ResourceLink  name="jms/queue/fltSsimInQ" 			global="jms/queue/fltSsimInQ" />
+
+	<ResourceLink  name="jms/fltAllOutConnectionFactory"  		global="jms/topsConnectionFactory" />
+
+	<ResourceLink  name="jms/fltLDMInConnectionFactory" 		global="jms/topsConnectionFactory" />
+	<ResourceLink  name="jms/queue/fltLDMInQ"  			global="jms/queue/fltLDMInQ" />
+
+	<ResourceLink  name="jms/fltAsyncConnectionFactory"  		global="jms/topsConnectionFactory" />
+	<ResourceLink  name="jms/queue/fltAsyncExecutorQ"		global="jms/queue/fltAsyncQ" />
+	<ResourceLink  name="jms/queue/fltAsyncInvokerQ" 		global="jms/queue/fltAsyncQ" />
+
+	<ResourceLink  name="jms/queue/fltEixOutQ"  			global="jms/queue/fltEixOutQ" />
+
+	<ResourceLink  	name="jms/engConnectionFactory" 		global="jms/topsConnectionFactory"/>
+	<ResourceLink 	name="jms/queue/engOROutQ"  			global="jms/queue/engOROutQ"/>
+
+	<ResourceLink 	name="jms/ntmInConnectionFactory" 	  	global="jms/topsConnectionFactory"/>
+	<ResourceLink  	name="jms/queue/ntmInQ" 	 		global="jms/queue/ntmInQ"/>
+
+	<ResourceLink 	name="jms/emailConnectionFactory" 		global="jms/topsConnectionFactory"/>
+	<ResourceLink 	name="jms/queue/emailOutQ" 			global="jms/queue/emailOutQ"/>
+
+	<!-- Weather related entries -->
+	<ResourceLink name="jms/fltWxrInConnectionFactory" 		global="jms/topsConnectionFactory" />
+	<ResourceLink name="jms/queue/fltWxrInQ" 			global="jms/queue/fltWxrInQ" />
+
+	<ResourceLink name="jms/flfInConnectionFactory" 		global="jms/topsConnectionFactory"/>
+	<ResourceLink name="jms/queue/flfInQ"           		global="jms/queue/mstEIXInQ"/>
+	<ResourceLink name="jms/queue/flfWthrInQ"       		global="jms/queue/mstEIXInQ"/>
+
+	<!-- Cargo Eix message processing -->
+	<ResourceLink name="jms/fltDBMInConnectionFactory" 		global="jms/topsConnectionFactory"/>
+	<ResourceLink name="jms/queue/fltDBMInQ" 			global="jms/queue/fltDBMInQ" />
+
+        <ResourceLink name="jms/engDBMInConnectionFactory"              global="jms/topsConnectionFactory" />
+        <ResourceLink name="jms/queue/engDBMInDestination"              global="jms/queue/engDBMInQ" />
+
+        <!--ENGINEERING ASYNC STARTS-->
+        <ResourceLink name="jms/engAsyncConnectionFactory"              global="jms/topsConnectionFactory"/>
+        <ResourceLink name="jms/queue/engAsyncExecutorQ"                global="jms/queue/engAsyncQ"/>
+        <ResourceLink name="jms/queue/engAsyncInvokerQ"                 global="jms/queue/engAsyncQ"/>
+
+        <!-- ENGINEERING ASYNC ENDS -->
+
+	<!--ENGINEERING OUTBOUND STARTS-->            
+	<ResourceLink  name="jms/engAllOutConnectionFactory" 		global="jms/topsConnectionFactory" />
+	<ResourceLink  name="jms/queue/engEixOutQ" 			global="jms/queue/engEixOutQ" />            
+	<!-- ENGINEERING OUTBOUND ENDS -->
+
+	<!-- Stand And Gate Implementation Config -->
+	<ResourceLink name="jms/fltSGBInConnectionFactory" 		global="jms/topsConnectionFactory" />
+	<ResourceLink name="jms/queue/fltSGBInQ" 			global="jms/queue/fltSGBInQ" />
+
+	<!-- OR Integration -->
+	<ResourceLink  name="jms/engTAOutConnectionFactory" 		global="jms/topsConnectionFactory" />
+	<ResourceLink  name="jms/queue/engTaOutQ" 			global="jms/queue/engTaOutQ" />
+	<ResourceLink  name="jms/engMPOutConnectionFactory" 		global="jms/topsConnectionFactory" />
+	<ResourceLink  name="jms/queue/engMpOutQ" 			global="jms/queue/engMpOutQ" />
+
+	<ResourceLink  name="jms/engMPInConnectionFactory" 		global="jms/topsConnectionFactory"/>
+	<ResourceLink  name="jms/queue/engMpInQ" 			global="jms/queue/engMpInQ"/>
+	<ResourceLink  name="jms/engTAInConnectionFactory" 		global="jms/topsConnectionFactory"/>
+	<ResourceLink  name="jms/queue/engTaInQ" 			global="jms/queue/engTaInQ"/>
+
+	<!-- CDN -->
+	<ResourceLink  name="jms/notificationConnectionFactory"       	global="jms/evtConnectionFactory"/>
+	<ResourceLink  name="jms/cdnConnectionFactory"                	global="jms/cdnConnectionFactory"/>
+	<ResourceLink  name="jms/queue/notificationInternalQueue"   	global="jms/queue/cdnqueue"/>
+	<ResourceLink  name="jms/topic/cdntopic"    			global="jms/topic/cdntopic"/>
+	<ResourceLink  name="jms/queue/staleSubscriptionQueue"    	global="jms/queue/cdnStaleConnectionQueue"/>
+
+	<!-- Rules -->
+	<ResourceLink  name="jms/queue/topsTxnRulesQ"  	   		global="jms/queue/topsTxnRulesQ"/>
+	<ResourceLink  name="jms/queue/topsBulkRulesQ" 	   		global="jms/queue/topsBulkRulesQ"/>
+	<ResourceLink  name="jms/queue/topsWKSRulesQ"  	   		global="jms/queue/topsWKSRulesQ"/>		
+
+
+	<ResourceLink  name="jms/topsEventConnectionFactory"       	global="jms/evtConnectionFactory"/>
+	<ResourceLink  name="jms/topsEdaConnectionFactory"           	global="jms/evtConnectionFactory"/>
+	<ResourceLink  name="jms/queue/topsEventQueue"               	global="jms/queue/topsEventQueue"/>
+
+	<ResourceLink  name="jms/mstDBMInConnectionFactory"  	  	global="jms/topsConnectionFactory" />
+	<ResourceLink  name="jms/queue/mstDBMInQ"            	  	global="jms/queue/mstDBMInQ" />
+
+	<ResourceLink  name="jms/queue/fltMvtOutQ" global="jms/queue/fltMvtOutQ" />
+	<ResourceLink  name="jms/fltMVTOutConnectionFactory" 		global="jms/evtConnectionFactory" />
+
+	<ResourceLink  name="jms/queue/fltAsmOutQ" 			global="jms/queue/fltAsmOutQ" />
+	<ResourceLink  name="jms/fltASMOutConnectionFactory" 		global="jms/evtConnectionFactory" />
+
+	<ResourceLink  name="jms/queue/engEDAQueue"                      global="jms/queue/engEDAQueue"/>
+	<ResourceLink  name="jms/queue/fltEDAQueue"                      global="jms/queue/fltEDAQueue"/>
+	<ResourceLink  name="jms/queue/mstEDAQueue"                      global="jms/queue/mstEDAQueue"/>
+	<ResourceLink  name="jms/queue/ccnEDAQueue"                      global="jms/queue/ccnEDAQueue"/>
+	
+	<!--CREW-->
+        <ResourceLink  name="jms/CRWQueueConnectionFactory"              global="jms/topsConnectionFactory"/>
+        <ResourceLink  name="jms/queue/TargetBlockHrInQ"                 global="jms/queue/CRWInQ"/>
+        <ResourceLink  name="jms/queue/crwEDAQueue"  			 global="jms/queue/crwEDAQueue"/>
+	
+</Context>
